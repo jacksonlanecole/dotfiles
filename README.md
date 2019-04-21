@@ -1,5 +1,13 @@
 # dotfiles
 
-In the near future, this will be the central repository for all
-of my setup and configuration files. I am in the process of migrating
-everything to this file but this is relatively low on my to do list for myself.
+## Installing
+To make setup on a new machine quick and easy, just do the following:
+
+```
+git clone https://github.com/jacksonlanecole/dotfiles
+cd ~/dotfiles
+sh install.sh
+```
+
+## Authors
+* **Jackson Cole** - [jacksoncole.io](http://jacksoncole.io)
