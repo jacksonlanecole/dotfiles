@@ -73,6 +73,7 @@ set notermguicolors
 " ******************************************************************************
 " UTILITIES
 " ******************************************************************************
+nnoremap <leader>s :call StripTrailingWhitespace()<cr>
 function! StripTrailingWhitespace()
 	if !&binary && &filetype != 'diff'
 		normal mz
