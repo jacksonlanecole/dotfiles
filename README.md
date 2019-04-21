@@ -4,7 +4,7 @@
 To make setup on a new machine quick and easy, just do the following:
 
 ```
-git clone https://github.com/jacksonlanecole/dotfiles
+git clone https://github.com/jacksonlanecole/dotfiles ~/dotfiles
 cd ~/dotfiles
 sh install.sh
 ```
