@@ -28,6 +28,11 @@ set softtabstop=4
 set shiftwidth=4
 set autoindent
 
+highlight CursorLine cterm=NONE ctermbg=DarkGray ctermfg=NONE guibg=DarkGray guifg=NONE
+highlight CursorColumn cterm=NONE ctermbg=DarkGray ctermfg=NONE guibg=DarkGray guifg=NONE
+highlight Cursor cterm=NONE ctermbg=DarkGray
+set cursorline
+nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
 
 set backspace=indent,eol,start " backspace over everything in insert mode
 set clipboard^=unnamed,unnamedplus
@@ -193,3 +198,5 @@ nnoremap <silent> <C-l> :nohl<CR><C-l>
 if has("autocmd")
   autocmd! bufwritepost .vimrc source $MYVIMRC
 endif
+
+
