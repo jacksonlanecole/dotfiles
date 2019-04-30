@@ -28,9 +28,8 @@ set softtabstop=4
 set shiftwidth=4
 set autoindent
 
-highlight CursorLine cterm=NONE ctermbg=DarkGray ctermfg=NONE guibg=DarkGray guifg=NONE
-highlight CursorColumn cterm=NONE ctermbg=DarkGray ctermfg=NONE guibg=DarkGray guifg=NONE
-highlight Cursor cterm=NONE ctermbg=DarkGray
+highlight clear CursorLine
+highlight CursorLine cterm=underline gui=underline
 set cursorline
 nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
 
