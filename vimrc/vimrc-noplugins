@@ -203,3 +203,6 @@ endif
 augroup NoSimultaneousEdits
     autocmd SwapExists * let v:swapchoice = 'o'
 augroup END
+
+" generates tag file for current working dir
+command! MakeTags !ctags -R .
