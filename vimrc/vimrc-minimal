@@ -1,0 +1,218 @@
+" ------------------------------------------------------------------------------
+" vimrc-noplugins
+" author : Jackson Cole
+" purpose: A lightweight, barebones, plugin-free vimrc file for when the
+"          plugins are too much.
+" ------------------------------------------------------------------------------
+
+" ------------------------------------------------------------------------------
+" Basic Configuration
+" ------------------------------------------------------------------------------
+set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
+call vundle#end()
+
+syntax on
+filetype plugin indent on
+set path+=**
+
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set autoindent
+
+set textwidth=79
+set colorcolumn=80
+highlight ColorColumn ctermbg=10
+
+set showmatch
+set incsearch
+set hlsearch
+set wildmenu
+
+set nu
+set title
+set ruler
+set mouse=a
+
+set listchars=tab:>~,nbsp:_,trail:.
+set list
+
+" Underlining cursor line
+highlight clear CursorLine
+highlight CursorLine cterm=underline gui=underline
+set cursorline
+
+" remap to highlight current column
+nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
+
+set backspace=indent,eol,start " backspace over everything in insert mode
+set clipboard^=unnamed,unnamedplus
+set magic
+
+" ------------------------------------------------------------------------------
+" STATUSLINE
+" ------------------------------------------------------------------------------
+function! GitBranch()
+    return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+endfunction
+
+function! StatuslineGit()
+    let l:branchname = GitBranch()
+    return strlen(l:branchname) > 0?' '.l:branchname.' ':''
+endfunction
+
+set statusline=
+set statusline+=%#LineNr#
+set statusline+=\ [BUFFER:\ %n]
+set statusline+=%#PmenuSel#
+set statusline+=%{StatuslineGit()}
+set statusline+=%#LineNr#
+set statusline+=\ %t
+set statusline+=\%=                        " swap to right hand side
+set statusline+=\%m                        " displays '+' if modified
+set statusline+=%r%h%w
+set statusline+=[%{&fileencoding?&fileencoding:&encoding}]
+set statusline+=[%{&fileformat}]
+set statusline+=%y
+set statusline+=[%p%%]
+set statusline+=[C:\ %3v,\ L:\ %4l/%L]
+
+set laststatus=2
+
+" ------------------------------------------------------------------------------
+" APPEARANCE
+" ------------------------------------------------------------------------------
+set t_Co=256
+set notermguicolors
+
+" ------------------------------------------------------------------------------
+" AUTOCMD DEFINITIONS
+" ------------------------------------------------------------------------------
+if !exists("autocommands_loaded")
+    let autocommands_loaded = 1
+
+    " --------------------------------------------------------------------------
+    " Filetype autocmd
+    " --------------------------------------------------------------------------
+    autocmd BufNewFile,BufRead *.h,*.hpp,*.c,*.cpp,*.cxx
+        \ set tabstop=4 |
+        \ set softtabstop=4 |
+        \ set shiftwidth=4 |
+        \ set textwidth=119 |
+        \ set colorcolumn=80,100,120 |
+        \ set expandtab |
+        \ set autoindent |
+        \ set fileformat=unix |
+
+    autocmd BufNewFile,BufRead *.py
+        \ set tabstop=4 |
+        \ set softtabstop=4 |
+        \ set shiftwidth=4 |
+        \ set textwidth=80 |
+        \ set colorcolumn=81 |
+        \ set expandtab |
+        \ set autoindent |
+        \ set fileformat=unix |
+
+    autocmd BufNewFile,BufRead *.html
+        \ set tabstop=4 |
+        \ set softtabstop=4 |
+        \ set shiftwidth=4 |
+        \ set textwidth=80 |
+        \ set colorcolumn=81 |
+        \ set expandtab |
+        \ set autoindent |
+        \ set fileformat=unix |
+
+    autocmd BufNewFile,BufRead *.css
+        \ set tabstop=4
+
+    autocmd Filetype *.md,*.tex WP
+    autocmd BufNewFile,BufRead *.md
+        \ set tabstop=4 |
+        \ set softtabstop=4 |
+        \ set shiftwidth=4 |
+        \ set textwidth=80 |
+        \ set colorcolumn=81 |
+        \ set expandtab |
+        \ set autoindent |
+        \ set fileformat=unix
+
+    autocmd BufNewFile,BufRead *.tex
+        \ call WP |
+        \ set tabstop=4 |
+        \ set softtabstop=4 |
+        \ set shiftwidth=4 |
+        \ set textwidth=80 |
+        \ set colorcolumn=81 |
+        \ set expandtab |
+        \ set autoindent |
+        \ set fileformat=unix |
+        \ setlocal spell spelllang=en_us |
+        \ set nofoldenable |
+
+endif
+
+" ------------------------------------------------------------------------------
+" Keybindings
+" ------------------------------------------------------------------------------
+" Remapping common capslock issues
+noremap :W :w
+noremap :Q :q
+noremap :X :x
+noremap :X! :x!
+
+" Who uses the semicolon anyways?
+nnoremap ; :
+" ------------------------------------------------------------------------------
+
+" ------------------------------------------------------------------------------
+" Functions
+" ------------------------------------------------------------------------------
+function! WordProcessorMode()
+   Usage: :WP
+    setlocal formatoptions=1
+    setlocal noexpandtab
+    setlocal spell spelllang=en_us
+    set thesaurus+=/Users/sbrown/.vim/thesaurus/mthesaur.txt
+    set complete+=s
+endfunction
+com! WP call WordProcessorMode()
+
+" ------------------------------------------------------------------------------
+" Utilities
+" ------------------------------------------------------------------------------
+nnoremap <leader>s :call StripTrailingWhitespace()<cr>
+function! StripTrailingWhitespace()
+    if !&binary && &filetype != 'diff'
+        normal mz
+        normal Hmy
+        %s/\s\+$//e
+        normal 'yz<CR>
+        normal `z
+    endif
+endfunction
+
+" <Ctrl-l> redraws the screen and removes any search highlighting.
+nnoremap <silent> <C-l> :nohl<CR><C-l>
+
+nnoremap <leader>n :NERDTreeToggle<cr>
+
+" auto-reload .vimrc on .vimrc save
+if has("autocmd")
+  autocmd! bufwritepost .vimrc source $MYVIMRC
+endif
+
+" generates tag file for current working dir
+command! MakeTags !ctags -R .
+
+command! WipeRegisters for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor
