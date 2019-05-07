@@ -1,8 +1,8 @@
 " ------------------------------------------------------------------------------
-" vimrc-noplugins
+" file   : vimrc-minimal
 " author : Jackson Cole
-" purpose: A lightweight, barebones, plugin-free vimrc file for when the
-"          plugins are too much.
+" purpose: A lightweight, almost-barebones, minimal-plugin 
+"          vimrc file for when the plugins are too much.
 " ------------------------------------------------------------------------------
 
 " ------------------------------------------------------------------------------
