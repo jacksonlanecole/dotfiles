@@ -18,8 +18,14 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
+Plugin 'majutsushi/tagbar'
+
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
+
+Plugin 'tpope/vim-surround'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'ntpeters/vim-better-whitespace'
 call vundle#end()
 " -----------------------------------------------------------------------------
 
