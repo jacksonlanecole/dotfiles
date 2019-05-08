@@ -226,6 +226,7 @@ endfunction
 nnoremap <silent> <C-l> :nohl<CR><C-l>
 
 nnoremap <leader>n :NERDTreeToggle<cr>
+nnoremap <leader>t :TagbarToggle<cr>
 
 " auto-reload .vimrc on .vimrc save
 if has("autocmd")
