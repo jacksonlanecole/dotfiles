@@ -23,11 +23,20 @@ Plugin 'majutsushi/tagbar'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 
-Plugin 'tpope/vim-surround'
+" Plugin 'tpope/vim-surround'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'Yggdroot/indentLine'
+
+Plugin 'morhetz/gruvbox'
+Plugin 'ryanoasis/vim-devicons'
 call vundle#end()
 " -----------------------------------------------------------------------------
+set encoding=UTF-8
+
+" TODO (Jackson): Move this next line
+colorscheme gruvbox
+set background=dark
 
 syntax on
 filetype plugin indent on
@@ -41,7 +50,7 @@ set autoindent
 
 set textwidth=79
 set colorcolumn=80
-highlight ColorColumn ctermbg=10
+highlight ColorColumn ctermbg=16
 
 set showmatch
 set incsearch
@@ -227,6 +236,9 @@ nnoremap <silent> <C-l> :nohl<CR><C-l>
 
 nnoremap <leader>n :NERDTreeToggle<cr>
 nnoremap <leader>t :TagbarToggle<cr>
+nnoremap <leader>b :NERDTreeToggle<CR>:TagbarToggle<CR>
+
+nnoremap <leader>g :GitGutterToggle<CR>
 
 " auto-reload .vimrc on .vimrc save
 if has("autocmd")
