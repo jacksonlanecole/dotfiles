@@ -225,6 +225,14 @@ com! WP call WordProcessorMode()
 " -----------------------------------------------------------------------------
 " Utilities
 " -----------------------------------------------------------------------------
+" Handles all relative number stuff
+set number relativenumber
+augroup numbertoggle
+    autocmd!
+    autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+    autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber
+augroup END
+
 nnoremap <leader>s :call StripTrailingWhitespace()<cr>
 function! StripTrailingWhitespace()
     if !&binary && &filetype != 'diff'
