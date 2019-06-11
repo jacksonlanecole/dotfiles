@@ -17,17 +17,22 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
+
+" Plugins: Navigation
 Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
 
+" Plugins: Git Related
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 
-" Plugin 'tpope/vim-surround'
+" Plugins: Editing
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'Yggdroot/indentLine'
+Plugin 'junegunn/goyo.vim'
 
+" Plugins: Appearance
 Plugin 'morhetz/gruvbox'
 Plugin 'ryanoasis/vim-devicons'
 call vundle#end()
