@@ -1,10 +1,10 @@
 #!/bin/sh
 
-export DOTFILES_DIR
-DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+export dotfiles_dir
+dotfiles_dir=$(dirname $(readlink -f $0))
 
-git --work-tree="$DOTFILES_DIR" --git-dir="$DOTFILES_DIR/.git" pull origin master
+git --work-tree="$dotfiles_dir" --git-dir="$dotfiles_dir/.git" pull origin master
 
-ln -svf "$DOTFILES_DIR/tmux.conf" $HOME/.tmux.conf
-ln -svf "$DOTFILES_DIR/vimrc/vimrc-minimal" $HOME/.vimrc
-ln -svf "$DOTFILES_DIR/.profile" $HOME/.profile
+ln -svf "$dotfiles_dir/tmux.conf" $HOME/.tmux.conf
+ln -svf "$dotfiles_dir/vimrc/vimrc-minimal" $HOME/.vimrc
+ln -svf "$dotfiles_dir/.profile" $HOME/.profile
