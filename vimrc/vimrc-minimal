@@ -262,3 +262,7 @@ endif
 command! MakeTags !ctags -R .
 
 command! WipeRegisters for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor
+
+" Placeholders
+let @p = "<++>"
+inoremap <c-j> <Esc>/<++><CR><Esc>cf>
