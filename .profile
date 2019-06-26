@@ -1,6 +1,7 @@
 #!/bin/sh
 
-export PATH="$PATH:$(du "$HOME/bin/" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
+export PATH="$PATH:$(du "$HOME/bin/" "$HOME/.local/bin/" | sed '/.git/d' | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
+
 export EDITOR="vim"
 export TERMINAL="kitty"
 export BROWSER="qutebrowser"
