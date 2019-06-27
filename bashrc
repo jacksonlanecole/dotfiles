@@ -114,7 +114,7 @@ git_is_dirty() { # -> bool
 }
 
 git_has_untracked() { # -> bool
-    if [[ $(git status --porcelain | grep "^??" | wc -l) ]]; then
+    if [[ $(git status --porcelain | grep "^??") != "" ]]; then
         true
     else
         false
