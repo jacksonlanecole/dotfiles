@@ -25,6 +25,7 @@ Plugin 'majutsushi/tagbar'
 " Plugins: Git Related
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 
 " Plugins: Editing
 Plugin 'kien/rainbow_parentheses.vim'
