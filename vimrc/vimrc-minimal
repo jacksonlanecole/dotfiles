@@ -277,3 +277,10 @@ command! WipeRegisters for i in range(34,122) | silent! call setreg(nr2char(i), 
 " Placeholders
 let @p = "<++>"
 inoremap <c-j> <Esc>/<++><CR><Esc>cf>
+
+" -----------------------------------------------------------------------------
+" THIS SECTION CONTAINS NEW SETTINGS THAT NEED TO BE ORGANIZED
+" -----------------------------------------------------------------------------
+" vim devicons settings
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:DevIconsEnableFoldersOpenClose = 1
