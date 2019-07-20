@@ -194,6 +194,16 @@ if !exists("autocommands_loaded")
         \ setlocal spell spelllang=en_us |
         \ set nofoldenable |
 
+    " Yaml file settings
+    autocmd BufNewFile,BufReadPost *.{yaml,yml}
+        \ set filetype=yaml |
+        \ set foldmethod=indent
+    autocmd FileType yaml
+        \ set tabstop=2 |
+        \ set softtabstop=2 |
+        \ set shiftwidth=2 |
+        \ set expandtab
+
 endif
 
 " -----------------------------------------------------------------------------
