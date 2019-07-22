@@ -20,7 +20,8 @@
 [[ $- != *i* ]] && return
 alias ls='ls --color=auto'
 
-[[ -z "$TERMINAL" ]] && source $HOME/.profile
+[[ ! -z "$TERMINAL" ]] && source $HOME/.profile
+
 shopt -s autocd cdspell
 
 # #############################################################################
@@ -152,5 +153,19 @@ PS1='\u\[$RED$BOLD\]@\[$RESET\]\h \[$BG_BLUE\]\[$BLACK\] \w \[$RESET\]\[$BLUE
 bind 'TAB':menu-complete
 bind "set show-all-if-ambiguous on"
 bind "set menu-complete-display-prefix on"
+
+# -----------------------------------------------------------------------------
+# Aliases
+# -----------------------------------------------------------------------------
+alias lsc="ls --color=always -l"
+alias lessc="less -R"
+alias lscl=color_less
+
+# -----------------------------------------------------------------------------
+# Functions
+# -----------------------------------------------------------------------------
+function color_less() {
+    lsc $1 | less -R
+}
 
 screenfetch
