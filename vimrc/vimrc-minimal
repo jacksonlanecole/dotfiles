@@ -25,6 +25,7 @@ Plugin 'majutsushi/tagbar'
 " Plugins: Git Related
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 
 " Plugins: Editing
 Plugin 'kien/rainbow_parentheses.vim'
@@ -79,7 +80,7 @@ set cursorline
 nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
 
 set backspace=indent,eol,start " backspace over everything in insert mode
-set clipboard^=unnamed,unnamedplus
+set clipboard=unnamed
 set magic
 
 " -----------------------------------------------------------------------------
@@ -90,7 +91,7 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
-au Syntax * RainbowParenthesesLoadChevrons
+" au Syntax * RainbowParenthesesLoadChevrons
 
 " -----------------------------------------------------------------------------
 " STATUSLINE
@@ -266,3 +267,6 @@ command! WipeRegisters for i in range(34,122) | silent! call setreg(nr2char(i), 
 " Placeholders
 let @p = "<++>"
 inoremap <c-j> <Esc>/<++><CR><Esc>cf>
+
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:DevIconsEnableFoldersOpenClose = 1
