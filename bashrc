@@ -169,5 +169,3 @@ alias lscl=color_less
 function color_less() {
     lsc $1 | less -R
 }
-
-screenfetch
