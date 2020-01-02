@@ -24,6 +24,8 @@ alias ls='ls --color=auto'
 
 shopt -s autocd cdspell
 
+source /usr/share/bash-completion/bash_completion
+
 # #############################################################################
 # Prompt Related Stuff
 # -----------------------------------------------------------------------------
