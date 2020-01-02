@@ -150,7 +150,7 @@ git_mode() { # -> str
 # -----------------------------------------------------------------------------
 # Prompt
 # -----------------------------------------------------------------------------
-PS1='\u\[$RED$BOLD\]@\[$RESET\]\h \[$BG_BLUE\]\[$BLACK\] \w \[$RESET\]\[$BLUE\] \[$BOLD\]$(git_prompt) \[$RESET\]\n\[$BOLD\]> \[$RESET\]'
+PS1='\u\[$RED\]\[$BOLD\]@\[$RESET\]\h \[$BG_BLUE\]\[$BLACK\] \w \[$RESET\]\[$BLUE\] \[$BOLD\]$(git_prompt) \[$RESET\]\n\[$BOLD\]> \[$RESET\]'
 
 bind 'TAB':menu-complete
 bind "set show-all-if-ambiguous on"
