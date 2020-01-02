@@ -185,7 +185,6 @@ if !exists("autocommands_loaded")
         \ set fileformat=unix
 
     autocmd BufNewFile,BufRead *.tex
-        \ call WP |
         \ set tabstop=4 |
         \ set softtabstop=4 |
         \ set shiftwidth=4 |
