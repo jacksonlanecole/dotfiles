@@ -68,7 +68,9 @@ set title
 set ruler
 set mouse=a
 
-set listchars=tab:>~,nbsp:_,trail:.
+" TODO Figure out which setting you like more
+"set listchars=tab:>~,nbsp:_,trail:.
+set listchars=tab:<~>,nbsp:_,trail:.
 set list
 
 " Underlining cursor line
