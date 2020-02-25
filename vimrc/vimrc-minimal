@@ -36,6 +36,9 @@ Plugin 'junegunn/goyo.vim'
 " Plugins: Appearance
 Plugin 'morhetz/gruvbox'
 Plugin 'ryanoasis/vim-devicons'
+
+" Plugins: Experimental
+Plugin 'vimwiki/vimwiki'
 call vundle#end()
 " -----------------------------------------------------------------------------
 set encoding=UTF-8
