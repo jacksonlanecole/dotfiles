@@ -237,6 +237,14 @@ function! WordProcessorMode()
 endfunction
 com! WP call WordProcessorMode()
 
+" Function to set all indentation related variables in one shot.
+" All indentations should be spaces, so there is no option to change this.
+function! SetIndentation(num_spaces)
+    let &l:tabstop=a:num_spaces
+    let &l:softtabstop=a:num_spaces
+    let &l:shiftwidth=a:num_spaces
+endfunction
+
 " -----------------------------------------------------------------------------
 " Utilities
 " -----------------------------------------------------------------------------
