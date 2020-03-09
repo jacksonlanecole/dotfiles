@@ -32,6 +32,7 @@ Plugin 'junegunn/rainbow_parentheses.vim'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'Yggdroot/indentLine'
 Plugin 'junegunn/goyo.vim'
+Plugin 'pboettch/vim-cmake-syntax'
 
 " Plugins: Appearance
 Plugin 'morhetz/gruvbox'
