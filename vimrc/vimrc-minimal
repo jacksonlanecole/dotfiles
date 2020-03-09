@@ -7,13 +7,13 @@
 
 " -----------------------------------------------------------------------------
 " Basic Configuration
-" -----------------------------------------------------------------------------
+" ---
 set nocompatible
 filetype off
 
 " -----------------------------------------------------------------------------
 " Plugins
-" -----------------------------------------------------------------------------
+" ---
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
@@ -100,7 +100,7 @@ au Syntax * RainbowParenthesesLoadBraces
 
 " -----------------------------------------------------------------------------
 " STATUSLINE
-" -----------------------------------------------------------------------------
+" ---
 function! GitBranch()
     return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
 endfunction
@@ -130,19 +130,19 @@ set laststatus=2
 
 " -----------------------------------------------------------------------------
 " APPEARANCE
-" -----------------------------------------------------------------------------
+" ---
 set t_Co=256
 set notermguicolors
 
 " -----------------------------------------------------------------------------
 " AUTOCMD DEFINITIONS
-" -----------------------------------------------------------------------------
+" ---
 if !exists("autocommands_loaded")
     let autocommands_loaded = 1
 
     " -------------------------------------------------------------------------
     " Filetype autocmd
-    " -------------------------------------------------------------------------
+    " ---
     autocmd BufNewFile,BufRead *.h,*.hpp,*.c,*.cpp,*.cxx
         \ set tabstop=4 |
         \ set softtabstop=4 |
@@ -198,22 +198,25 @@ if !exists("autocommands_loaded")
         \ set fileformat=unix |
         \ setlocal spell spelllang=en_us |
         \ set nofoldenable |
+        \ call SetupRainbowParens()
 
     " Yaml file settings
     autocmd BufNewFile,BufReadPost *.{yaml,yml}
         \ set filetype=yaml |
         \ set foldmethod=indent
+        \ call SetupRainbowParens()
     autocmd FileType yaml
         \ set tabstop=2 |
         \ set softtabstop=2 |
         \ set shiftwidth=2 |
         \ set expandtab
+        \ call SetupRainbowParens()
 
 endif
 
 " -----------------------------------------------------------------------------
 " Keybindings
-" -----------------------------------------------------------------------------
+" ---
 " Remapping common capslock issues
 noremap :W :w
 noremap :Q :q
@@ -226,7 +229,7 @@ nnoremap ; :
 
 " -----------------------------------------------------------------------------
 " Functions
-" -----------------------------------------------------------------------------
+" ---
 function! WordProcessorMode()
    Usage: :WP
     setlocal formatoptions=1
@@ -247,7 +250,7 @@ endfunction
 
 " -----------------------------------------------------------------------------
 " Utilities
-" -----------------------------------------------------------------------------
+" ---
 " Handles all relative number stuff
 set number relativenumber
 augroup numbertoggle
@@ -292,7 +295,7 @@ inoremap <c-j> <Esc>/<++><CR><Esc>cf>
 
 " -----------------------------------------------------------------------------
 " THIS SECTION CONTAINS NEW SETTINGS THAT NEED TO BE ORGANIZED
-" -----------------------------------------------------------------------------
+" ---
 " vim devicons settings
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
