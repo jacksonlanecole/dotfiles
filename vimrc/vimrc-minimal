@@ -48,8 +48,8 @@ set encoding=UTF-8
 colorscheme gruvbox
 set background=dark
 
-syntax on
 filetype plugin indent on
+syntax on
 set path+=**
 
 set tabstop=4
