@@ -91,13 +91,18 @@ set magic
 
 " -----------------------------------------------------------------------------
 " Plugin Settings
-" -----------------------------------------------------------------------------
-" kien/rainbow_parentheses
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
-" au Syntax * RainbowParenthesesLoadChevrons
+" ---
+" junegunn/rainbow_parentheses
+function! SetupRainbowParens()
+    " This sets up the rainbow parens. It's a bit easier to just call this
+    " when setting up autocommands for filetypes.
+    RainbowParenthesesToggle
+    RainbowParenthesesLoadRound
+    RainbowParenthesesLoadSquare
+    RainbowParenthesesLoadBraces
+    RainbowParenthesesLoadChevrons
+endfunction
+
 
 " -----------------------------------------------------------------------------
 " STATUSLINE
@@ -153,6 +158,10 @@ if !exists("autocommands_loaded")
         \ set expandtab |
         \ set autoindent |
         \ set fileformat=unix |
+        \ call SetupRainbowParens()
+
+    augroup BufNewFile,BufRead CMakeLists.txt,*.cmake
+        \ RainbowParenthesesToggleAll
 
     autocmd BufNewFile,BufRead *.py
         \ set tabstop=4 |
@@ -163,6 +172,7 @@ if !exists("autocommands_loaded")
         \ set expandtab |
         \ set autoindent |
         \ set fileformat=unix |
+        \ call SetupRainbowParens()
 
     autocmd BufNewFile,BufRead *.html
         \ set tabstop=4 |
@@ -176,6 +186,7 @@ if !exists("autocommands_loaded")
 
     autocmd BufNewFile,BufRead *.css
         \ set tabstop=4
+        \ call SetupRainbowParens()
 
     autocmd Filetype *.md,*.tex WP
     autocmd BufNewFile,BufRead *.md
@@ -187,6 +198,7 @@ if !exists("autocommands_loaded")
         \ set expandtab |
         \ set autoindent |
         \ set fileformat=unix
+        \ call SetupRainbowParens()
 
     autocmd BufNewFile,BufRead *.tex
         \ set tabstop=4 |
