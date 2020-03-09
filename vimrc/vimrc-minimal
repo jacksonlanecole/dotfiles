@@ -28,7 +28,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 
 " Plugins: Editing
-Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'junegunn/rainbow_parentheses.vim'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'Yggdroot/indentLine'
 Plugin 'junegunn/goyo.vim'
