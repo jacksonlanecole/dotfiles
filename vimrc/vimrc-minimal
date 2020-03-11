@@ -7,13 +7,13 @@
 
 " -----------------------------------------------------------------------------
 " Basic Configuration
-" -----------------------------------------------------------------------------
+" ---
 set nocompatible
 filetype off
 
 " -----------------------------------------------------------------------------
 " Plugins
-" -----------------------------------------------------------------------------
+" ---
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
@@ -28,14 +28,18 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 
 " Plugins: Editing
-Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'junegunn/rainbow_parentheses.vim'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'Yggdroot/indentLine'
 Plugin 'junegunn/goyo.vim'
+Plugin 'pboettch/vim-cmake-syntax'
 
 " Plugins: Appearance
 Plugin 'morhetz/gruvbox'
 Plugin 'ryanoasis/vim-devicons'
+
+" Plugins: Experimental
+Plugin 'vimwiki/vimwiki'
 call vundle#end()
 " -----------------------------------------------------------------------------
 set encoding=UTF-8
@@ -44,8 +48,8 @@ set encoding=UTF-8
 colorscheme gruvbox
 set background=dark
 
-syntax on
 filetype plugin indent on
+syntax on
 set path+=**
 
 set tabstop=4
@@ -87,17 +91,22 @@ set magic
 
 " -----------------------------------------------------------------------------
 " Plugin Settings
-" -----------------------------------------------------------------------------
-" kien/rainbow_parentheses
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
-" au Syntax * RainbowParenthesesLoadChevrons
+" ---
+" junegunn/rainbow_parentheses
+function! SetupRainbowParens()
+    " This sets up the rainbow parens. It's a bit easier to just call this
+    " when setting up autocommands for filetypes.
+    RainbowParenthesesToggle
+    RainbowParenthesesLoadRound
+    RainbowParenthesesLoadSquare
+    RainbowParenthesesLoadBraces
+    RainbowParenthesesLoadChevrons
+endfunction
+
 
 " -----------------------------------------------------------------------------
 " STATUSLINE
-" -----------------------------------------------------------------------------
+" ---
 function! GitBranch()
     return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
 endfunction
@@ -127,19 +136,19 @@ set laststatus=2
 
 " -----------------------------------------------------------------------------
 " APPEARANCE
-" -----------------------------------------------------------------------------
+" ---
 set t_Co=256
 set notermguicolors
 
 " -----------------------------------------------------------------------------
 " AUTOCMD DEFINITIONS
-" -----------------------------------------------------------------------------
+" ---
 if !exists("autocommands_loaded")
     let autocommands_loaded = 1
 
     " -------------------------------------------------------------------------
     " Filetype autocmd
-    " -------------------------------------------------------------------------
+    " ---
     autocmd BufNewFile,BufRead *.h,*.hpp,*.c,*.cpp,*.cxx
         \ set tabstop=4 |
         \ set softtabstop=4 |
@@ -149,6 +158,10 @@ if !exists("autocommands_loaded")
         \ set expandtab |
         \ set autoindent |
         \ set fileformat=unix |
+        \ call SetupRainbowParens()
+
+    augroup BufNewFile,BufRead CMakeLists.txt,*.cmake
+        \ RainbowParenthesesToggleAll
 
     autocmd BufNewFile,BufRead *.py
         \ set tabstop=4 |
@@ -159,6 +172,7 @@ if !exists("autocommands_loaded")
         \ set expandtab |
         \ set autoindent |
         \ set fileformat=unix |
+        \ call SetupRainbowParens()
 
     autocmd BufNewFile,BufRead *.html
         \ set tabstop=4 |
@@ -172,6 +186,7 @@ if !exists("autocommands_loaded")
 
     autocmd BufNewFile,BufRead *.css
         \ set tabstop=4
+        \ call SetupRainbowParens()
 
     autocmd Filetype *.md,*.tex WP
     autocmd BufNewFile,BufRead *.md
@@ -183,6 +198,7 @@ if !exists("autocommands_loaded")
         \ set expandtab |
         \ set autoindent |
         \ set fileformat=unix
+        \ call SetupRainbowParens()
 
     autocmd BufNewFile,BufRead *.tex
         \ set tabstop=4 |
@@ -195,22 +211,25 @@ if !exists("autocommands_loaded")
         \ set fileformat=unix |
         \ setlocal spell spelllang=en_us |
         \ set nofoldenable |
+        \ call SetupRainbowParens()
 
     " Yaml file settings
     autocmd BufNewFile,BufReadPost *.{yaml,yml}
         \ set filetype=yaml |
         \ set foldmethod=indent
+        \ call SetupRainbowParens()
     autocmd FileType yaml
         \ set tabstop=2 |
         \ set softtabstop=2 |
         \ set shiftwidth=2 |
         \ set expandtab
+        \ call SetupRainbowParens()
 
 endif
 
 " -----------------------------------------------------------------------------
 " Keybindings
-" -----------------------------------------------------------------------------
+" ---
 " Remapping common capslock issues
 noremap :W :w
 noremap :Q :q
@@ -223,7 +242,7 @@ nnoremap ; :
 
 " -----------------------------------------------------------------------------
 " Functions
-" -----------------------------------------------------------------------------
+" ---
 function! WordProcessorMode()
    Usage: :WP
     setlocal formatoptions=1
@@ -234,9 +253,17 @@ function! WordProcessorMode()
 endfunction
 com! WP call WordProcessorMode()
 
+" Function to set all indentation related variables in one shot.
+" All indentations should be spaces, so there is no option to change this.
+function! SetIndentation(num_spaces)
+    let &l:tabstop=a:num_spaces
+    let &l:softtabstop=a:num_spaces
+    let &l:shiftwidth=a:num_spaces
+endfunction
+
 " -----------------------------------------------------------------------------
 " Utilities
-" -----------------------------------------------------------------------------
+" ---
 " Handles all relative number stuff
 set number relativenumber
 augroup numbertoggle
@@ -281,7 +308,7 @@ inoremap <c-j> <Esc>/<++><CR><Esc>cf>
 
 " -----------------------------------------------------------------------------
 " THIS SECTION CONTAINS NEW SETTINGS THAT NEED TO BE ORGANIZED
-" -----------------------------------------------------------------------------
+" ---
 " vim devicons settings
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
