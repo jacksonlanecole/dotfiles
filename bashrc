@@ -20,7 +20,7 @@
 [[ $- != *i* ]] && return
 alias ls='ls --color=auto'
 
-[[ ! -z "$TERMINAL" ]] && source $HOME/.profile
+[[ -z $TERMINAL ]] && source $HOME/.profile
 
 shopt -s autocd cdspell
 
