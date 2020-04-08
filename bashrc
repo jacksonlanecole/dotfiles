@@ -26,6 +26,10 @@ shopt -s autocd cdspell
 
 source /usr/share/bash-completion/bash_completion
 
+# Setting up infinite bash history
+HISTSIZE=-1
+HISTFILESIZE=-1
+
 # #############################################################################
 # Prompt Related Stuff
 # -----------------------------------------------------------------------------
