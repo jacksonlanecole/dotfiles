@@ -93,16 +93,11 @@ set magic
 " Plugin Settings
 " ---
 " junegunn/rainbow_parentheses
-function! SetupRainbowParens()
-    " This sets up the rainbow parens. It's a bit easier to just call this
-    " when setting up autocommands for filetypes.
-    RainbowParenthesesToggle
-    RainbowParenthesesLoadRound
-    RainbowParenthesesLoadSquare
-    RainbowParenthesesLoadBraces
-    RainbowParenthesesLoadChevrons
-endfunction
-
+let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
+augroup rainbow
+    autocmd!
+    autocmd FileType cpp,c,python,bash,sh,txt,makefile,vim RainbowParentheses
+augroup END
 
 " -----------------------------------------------------------------------------
 " STATUSLINE
@@ -149,44 +144,51 @@ if !exists("autocommands_loaded")
     " -------------------------------------------------------------------------
     " Filetype autocmd
     " ---
-    autocmd BufNewFile,BufRead *.h,*.hpp,*.c,*.cpp,*.cxx
-        \ set tabstop=4 |
-        \ set softtabstop=4 |
-        \ set shiftwidth=4 |
-        \ set textwidth=119 |
-        \ set colorcolumn=80,100,120 |
-        \ set expandtab |
-        \ set autoindent |
-        \ set fileformat=unix |
-        \ call SetupRainbowParens()
+    augroup settings_cpp
+        autocmd FileType cpp
+            \ set tabstop=4 |
+            \ set softtabstop=4 |
+            \ set shiftwidth=4 |
+            \ set textwidth=119 |
+            \ set colorcolumn=80,100,120 |
+            \ set expandtab |
+            \ set autoindent |
+            \ set fileformat=unix |
+    augroup END
 
-    augroup BufNewFile,BufRead CMakeLists.txt,*.cmake
-        \ RainbowParenthesesToggleAll
+    augroup settings_cmake
+        autocmd!
+        autocmd FileType cmake
+            \ set textwidth=119 |
+            \ set colorcolumn=80,100,120 |
+    augroup END
 
-    autocmd BufNewFile,BufRead *.py
-        \ set tabstop=4 |
-        \ set softtabstop=4 |
-        \ set shiftwidth=4 |
-        \ set textwidth=80 |
-        \ set colorcolumn=81 |
-        \ set expandtab |
-        \ set autoindent |
-        \ set fileformat=unix |
-        \ call SetupRainbowParens()
+    augroup settings_python
+        autocmd!
+        autocmd FileType python
+            \ set tabstop=4 |
+            \ set softtabstop=4 |
+            \ set shiftwidth=4 |
+            \ set textwidth=80 |
+            \ set colorcolumn=81 |
+            \ set expandtab |
+            \ set autoindent |
+            \ set fileformat=unix |
+    augroup END
 
-    autocmd BufNewFile,BufRead *.html
-        \ set tabstop=4 |
-        \ set softtabstop=4 |
-        \ set shiftwidth=4 |
-        \ set textwidth=80 |
-        \ set colorcolumn=81 |
-        \ set expandtab |
-        \ set autoindent |
-        \ set fileformat=unix |
+    augroup settings_web
+        autocmd!
+        autocmd FileType html,css
+            \ set tabstop=4 |
+            \ set softtabstop=4 |
+            \ set shiftwidth=4 |
+            \ set textwidth=80 |
+            \ set colorcolumn=81 |
+            \ set expandtab |
+            \ set autoindent |
+            \ set fileformat=unix |
+    augroup END
 
-    autocmd BufNewFile,BufRead *.css
-        \ set tabstop=4
-        \ call SetupRainbowParens()
 
     autocmd Filetype *.md,*.tex WP
     autocmd BufNewFile,BufRead *.md
@@ -198,7 +200,6 @@ if !exists("autocommands_loaded")
         \ set expandtab |
         \ set autoindent |
         \ set fileformat=unix
-        \ call SetupRainbowParens()
 
     autocmd BufNewFile,BufRead *.tex
         \ set tabstop=4 |
@@ -211,20 +212,18 @@ if !exists("autocommands_loaded")
         \ set fileformat=unix |
         \ setlocal spell spelllang=en_us |
         \ set nofoldenable |
-        \ call SetupRainbowParens()
 
     " Yaml file settings
-    autocmd BufNewFile,BufReadPost *.{yaml,yml}
-        \ set filetype=yaml |
-        \ set foldmethod=indent
-        \ call SetupRainbowParens()
-    autocmd FileType yaml
-        \ set tabstop=2 |
-        \ set softtabstop=2 |
-        \ set shiftwidth=2 |
-        \ set expandtab
-        \ call SetupRainbowParens()
-
+    augroup settings_yaml
+        autocmd FileType yaml
+            \ set filetype=yaml |
+            \ set tabstop=2 |
+            \ set softtabstop=2 |
+            \ set shiftwidth=2 |
+            \ set expandtab |
+            \ set foldmethod=indent |
+            \ set nofoldenable |
+    augroup END
 endif
 
 " -----------------------------------------------------------------------------
