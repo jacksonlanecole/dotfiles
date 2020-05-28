@@ -1,11 +1,5 @@
 #!/bin/bash
 # -----------------------------------------------------------------------------
-#  _               _
-# | |__   __ _ ___| |__  _ __ ___
-# | '_ \ / _` / __| '_ \| '__/ __|
-# | |_) | (_| \__ \ | | | | | (__
-# |_.__/ \__,_|___/_| |_|_|  \___|
-#
 # Author : Jackson Cole
 # Email  : <jackson@jacksoncole.io>
 # Notes  :
@@ -154,7 +148,7 @@ git_mode() { # -> str
 # -----------------------------------------------------------------------------
 # Prompt
 # -----------------------------------------------------------------------------
-PS1='\u\[$RED\]\[$BOLD\]@\[$RESET\]\h \[$BG_BLUE\]\[$BLACK\] \w \[$RESET\]\[$BLUE\] \[$BOLD\]$(git_prompt) \[$RESET\]\n\[$BOLD\]> \[$RESET\]'
+PS1='\[$RED\]\[$BOLD\][\[$RESET\]\u\[$RED\]\[$BOLD\]@\[$RESET\]\h\[$RED\]\[$BOLD\]]\[$RESET\] \[$BG_BLUE\]\[$BLACK\] \w \[$RESET\]\[$BLUE\] \[$BOLD\]$(git_prompt) \[$RESET\]\n\[$BOLD\]> \[$RESET\]'
 
 bind 'TAB':menu-complete
 bind "set show-all-if-ambiguous on"
