@@ -33,6 +33,7 @@ Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'Yggdroot/indentLine'
 Plugin 'junegunn/goyo.vim'
 Plugin 'pboettch/vim-cmake-syntax'
+Plugin 'peterhoeg/vim-qml'
 
 " Plugins: Appearance
 Plugin 'morhetz/gruvbox'
@@ -98,6 +99,10 @@ augroup rainbow
     autocmd!
     autocmd FileType cpp,c,python,bash,sh,txt,makefile,vim RainbowParentheses
 augroup END
+
+let g:indentLine_fileTypeExclude = ['json', 'markdown']
+
+let g:NERDTreeWinSize=35
 
 " -----------------------------------------------------------------------------
 " STATUSLINE
@@ -188,7 +193,6 @@ if !exists("autocommands_loaded")
             \ set autoindent |
             \ set fileformat=unix |
     augroup END
-
 
     autocmd Filetype *.md,*.tex WP
     autocmd BufNewFile,BufRead *.md
