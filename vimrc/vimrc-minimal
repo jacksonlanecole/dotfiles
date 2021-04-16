@@ -35,6 +35,8 @@ Plugin 'junegunn/goyo.vim'
 Plugin 'pboettch/vim-cmake-syntax'
 Plugin 'peterhoeg/vim-qml'
 
+Plugin 'Rykka/InstantRst'
+
 " Plugins: Appearance
 Plugin 'morhetz/gruvbox'
 Plugin 'ryanoasis/vim-devicons'
