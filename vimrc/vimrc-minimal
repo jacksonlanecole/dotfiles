@@ -163,6 +163,19 @@ if !exists("autocommands_loaded")
             \ set fileformat=unix |
     augroup END
 
+    augroup settings_swig
+        autocmd BufNewFile,BufRead *.i
+            \ set filetype=swig |
+            \ set tabstop=2 |
+            \ set softtabstop=2 |
+            \ set shiftwidth=2 |
+            \ set textwidth=119 |
+            \ set colorcolumn=80,100,120 |
+            \ set expandtab |
+            \ set autoindent |
+            \ set fileformat=unix |
+    augroup END
+
     augroup settings_qml
         autocmd FileType qml
             \ set tabstop=4 |
