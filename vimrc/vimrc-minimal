@@ -201,8 +201,8 @@ if !exists("autocommands_loaded")
             \ set tabstop=4 |
             \ set softtabstop=4 |
             \ set shiftwidth=4 |
-            \ set textwidth=80 |
-            \ set colorcolumn=81 |
+            \ set textwidth=120 |
+            \ set colorcolumn=80,100,120 |
             \ set expandtab |
             \ set autoindent |
             \ set fileformat=unix |
@@ -335,6 +335,12 @@ command! WipeRegisters for i in range(34,122) | silent! call setreg(nr2char(i), 
 " Placeholders
 let @p = "<++>"
 inoremap <c-j> <Esc>/<++><CR><Esc>cf>
+
+" List buffers
+nnoremap <Leader>f :buffers<CR>:buffer<Space>
+
+nnoremap <Leader>e :setlocal spell spelllang=en_us<CR>
+nnoremap <Leader>q :setlocal nospell<CR>
 
 " -----------------------------------------------------------------------------
 " THIS SECTION CONTAINS NEW SETTINGS THAT NEED TO BE ORGANIZED
