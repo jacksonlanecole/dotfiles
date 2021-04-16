@@ -320,8 +320,6 @@ nnoremap <leader>n :NERDTreeToggle<cr>
 nnoremap <leader>t :TagbarToggle<cr>
 nnoremap <leader>b :NERDTreeToggle<CR>:TagbarToggle<CR>
 
-nnoremap <leader>g :GitGutterToggle<CR>
-
 " auto-reload .vimrc on .vimrc save
 if has("autocmd")
   autocmd! bufwritepost .vimrc source $MYVIMRC
