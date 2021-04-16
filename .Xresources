@@ -30,11 +30,11 @@
 !! Iosevka
 
 !! URxvt Appearance
-URxvt.font:       xft:Hack Nerd Font Mono:style=Regular:size=9
-URxvt.boldFont:   xft:Hack Nerd Font Mono:style=Bold:size=9
-URxvt.italicFont: xft:Hack Nerd Font Mono:style=Italic:size=9
-URxvt.boldItalicFont: xft:Hack Nerd Font Mono:style=Bold Italic:size=9
-URxvt.letterSpace: 0
+URxvt.font:       xft:Hack Nerd Font Mono:style=Regular:size=10
+URxvt.boldFont:   xft:Hack Nerd Font Mono:style=Bold:size=10
+URxvt.italicFont: xft:Hack Nerd Font Mono:style=Italic:size=10
+URxvt.boldItalicFont: xft:Hack Nerd Font Mono:style=Bold Italic:size=10
+URxvt.letterSpace: -2
 URxvt.lineSpace: 0
 URxvt.geometry: 92x24
 URxvt.internalBorder: 24
@@ -62,7 +62,7 @@ URxvt.urlLauncher: firefox
 URxvt.underlineURLs: true
 URxvt.urlButton: 1
 
-Xft.dpi: 170
+Xft.dpi: 90
 Xft.autohint: 0
 Xft.lcdfilter: lcddefault
 Xft.hintstyle: hintfull
